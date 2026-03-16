@@ -5,7 +5,7 @@
   <artifactId>ChatApplication</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>ChatApplication Maven Webapp</name>
+  <name>app.ChatApplication Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
@@ -19,9 +19,33 @@
           <artifactId>spring-boot-starter-web</artifactId>
           <version>4.1.0-M2</version>
           <scope>compile</scope>
+          <exclusions>
+              <exclusion>
+                  <groupId>tools.jackson.core</groupId>
+                  <artifactId>jackson-core</artifactId>
+              </exclusion>
+          </exclusions>
+      </dependency>
+      <dependency>
+          <groupId>jakarta.ws.rs</groupId>
+          <artifactId>jakarta.ws.rs-api</artifactId>
+          <version>4.0.0</version>
+          <scope>compile</scope>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-actuator</artifactId>
+          <version>4.1.0-M2</version>
+          <scope>compile</scope>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-thymeleaf</artifactId>
+          <version>4.1.0-M2</version>
+          <scope>compile</scope>
       </dependency>
   </dependencies>
   <build>
-    <finalName>ChatApplication</finalName>
+    <finalName>app.ChatApplication</finalName>
   </build>
 </project>
