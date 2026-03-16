@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan("controllermvc")
+@ComponentScan("mvc.controller")
 public class ChatApplication {
 
   public static void main(String[] args) {
