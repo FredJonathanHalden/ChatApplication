@@ -38,4 +38,22 @@ public class Messages {
     public int getNumberOfMessages() {
         return messages.size();
     }
+
+    public String toHtmlSvgTextString() {
+        StringBuilder messagesString = new StringBuilder();
+        if (messages.size() > 1) {
+            int y = 30;
+            for (Message message : messages) {
+                messagesString.append("<text x=\"30px\" y=\"").append(y).append("px\">");
+                messagesString.append(message.toString());
+                messagesString.append("</text>");
+                y += 30;
+            }
+        } else {
+            messagesString.append("<text x=\"30px\" y=\"30px\">");
+            messagesString.append(messages.get(0).toString());
+            messagesString.append("</text>");
+        }
+        return messagesString.toString();
+    }
 }

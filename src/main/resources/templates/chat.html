@@ -1,17 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link href="../../css/chat.css" th:href="@{/css/chat.css}" rel="stylesheet" type="text/css">
     <meta charset="UTF-8">
     <title>Chattapplikation</title>
 </head>
 <body>
     <h2>Chattapplikation</h2>
-    <article>
-        <p>Användare skrev: </p>
-    </article>
+    <svg xmlns="http://www.w3.org/2000/svg">
+        <rect/>
+        <circle cx="30" cy="30" r="1" style="fill:black;">
+        </circle>
+        <circle cx="35" cy="30" r="1" style="fill:black;">
+        </circle>
+        <circle class="dot" cx="40" cy="30" r="1">
+            <animate attributeName="fill" values="black;white;black" dur="2s" repeatCount="indefinite" />
+        </circle>
+    </svg>
     <form action="/submit" method="post">
-        <input type="text" name="senderName" value="Skriv ditt namn här" checked>
-        <input type="text" name="message" value="Skriv din text här" checked>
+        <label>
+            Namn:
+            <br/>
+            <input type="text" name="senderName" value=""/>
+        </label>
+        <br/>
+        <label for="message">
+            Meddelande:
+            <br/>
+            <textarea class="message" id="message" name="message">
+            </textarea>
+        </label>
         <input type="submit" value="Skicka">
     </form>
 </body>
