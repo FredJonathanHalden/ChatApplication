@@ -35,7 +35,7 @@ public class ChatController {
         int y = 20;
         String htmlCode = "";
         for (Message foundMessage : messageRepository.findAll()) {
-            htmlCode += "<p x=30 y=" + y + ">" + foundMessage + "</p>";
+            htmlCode += "<p x=30 y=" + y + " style=\"max-width:100%;height:auto;\">" + foundMessage + "</p>";
             y += 20;
         }
         model.addAttribute("messages", htmlCode);

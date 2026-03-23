@@ -5,20 +5,21 @@
 <head>
     <link href="../../css/chat.css" th:href="@{/css/chat.css}" rel="stylesheet" type="text/css">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatapplication</title>
 </head>
 <body>
-<h2>Chatapplication</h2>
-<iframe src="/chat-response"></iframe>
+<h2 style="max-width:100%;height:auto;">Chatapplication</h2>
+<iframe src="/chat-response" style="max-width:100%;height:auto;"></iframe>
 <form action="/add-message" method="post">
     <label>Name: </label>
     <br/>
-    <input type="text" name="senderName" th:value="${senderName}"/>
+    <input type="text" name="senderName" th:value="${senderName}" style="max-width:100%;height:auto;"/>
     <br/>
     <label>Message: </label>
     <br/>
-    <textarea id="text" name="text">Write your message here...</textarea>
-    <input type="submit" value="Send">
+    <textarea id="text" name="text" style="max-width:100%;height:auto;">Write your message here...</textarea>
+    <input type="submit" value="Send" style="max-width:100%;height:auto;">
 </form>
 </body>
 </html>

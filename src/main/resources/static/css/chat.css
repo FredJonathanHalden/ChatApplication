@@ -12,12 +12,10 @@ label {
 
 iframe {
     width: 1000px;
-    height: 450px;
     border: 2px solid #00FF00;
 }
 
 textarea {
-    height: 4em;
     width: 75em;
     border: 2px solid #00FF00;
     color: #00FF00;
@@ -26,7 +24,7 @@ textarea {
 }
 
 input {
-   background-color: black;
-   border: 2px solid #00FF00;
-   color: #00FF00;
+    background-color: black;
+    border: 2px solid #00FF00;
+    color: #00FF00;
 }

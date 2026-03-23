@@ -3,12 +3,13 @@
 <head>
     <link href="../../css/chat-response.css" th:href="@{/css/chat-response.css}" rel="stylesheet" type="text/css">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatapplication</title>
 </head>
 <body>
-    <div th:utext="${messages}">
+    <div th:utext="${messages}" style="max-width:100%;height:auto;">
     </div>
-    <svg xmlns="http://www.w3.org/2000/svg">
+    <svg xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
         <circle cx=5 cy=0 r=1 style="fill:#00FF00;">
         </circle>
         <circle cx=10 cy=0 r=1 style="fill:#00FF00;">
