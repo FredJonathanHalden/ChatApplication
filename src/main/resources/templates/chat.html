@@ -5,20 +5,20 @@
 <head>
     <link href="../../css/chat.css" th:href="@{/css/chat.css}" rel="stylesheet" type="text/css">
     <meta charset="UTF-8">
-    <title>Chattapplikation</title>
+    <title>Chatapplication</title>
 </head>
 <body>
-<h2>Chattapplikation</h2>
+<h2>Chatapplication</h2>
 <iframe src="/chat-response"></iframe>
 <form action="/add-message" method="post">
-    <label>Namn: </label>
+    <label>Name: </label>
     <br/>
     <input type="text" name="senderName" th:value="${senderName}"/>
     <br/>
-    <label>Meddelande: </label>
+    <label>Message: </label>
     <br/>
-    <textarea id="text" name="text">Skriv ditt meddelande här...</textarea>
-    <input type="submit" value="Skicka">
+    <textarea id="text" name="text">Write your message here...</textarea>
+    <input type="submit" value="Send">
 </form>
 </body>
 </html>

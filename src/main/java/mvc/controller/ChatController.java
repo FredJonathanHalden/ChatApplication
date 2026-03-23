@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @Controller
-@RequestMapping(path="/")
 public class ChatController {
 
     @Autowired
@@ -26,7 +25,7 @@ public class ChatController {
             String senderName = (String) inputFlashMap.get("senderName");
             model.addAttribute("senderName", senderName);
         } else {
-            model.addAttribute("senderName", "Skriv ditt namn här...");
+            model.addAttribute("senderName", "Write your name here...");
         }
         return "chat.html";
     }
@@ -56,7 +55,7 @@ public class ChatController {
         return "redirect:/chat";
     }
 
-    @GetMapping(path="/all", produces = "application/json")
+    @GetMapping(path="/messages", produces = "application/json")
     public @ResponseBody Iterable<Message> getAllMessages() {
         // This returns a JSON or XML with the messages
         return messageRepository.findAll();
