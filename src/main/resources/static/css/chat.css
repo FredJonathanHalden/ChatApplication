@@ -1,27 +1,32 @@
-svg {
-    width: 1000px;
-    height: 450px;
+h2 {
+    color: #00FF00;
 }
 
-svg rect {
-    width: 100%;
-    height: 100%;
-    rx: 20px;
-    ry: 20px;
-    fill: white;
-    stroke-width: 3px;
-    stroke: black;
+body {
+    background-color: black;
+}
+
+label {
+    color: #00FF00;
+}
+
+iframe {
+    width: 1000px;
+    height: 450px;
+    border: 2px solid #00FF00;
 }
 
 textarea {
-    rows: 4;
-    cols: 50;
+    height: 4em;
+    width: 75em;
+    border: 2px solid #00FF00;
+    color: #00FF00;
+    resize: none;
+    background-color: black;
 }
 
-text {
-    font-size: 14px;
-}
-
-circle.dot {
-
+input {
+   background-color: black;
+   border: 2px solid #00FF00;
+   color: #00FF00;
 }

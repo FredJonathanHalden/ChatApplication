@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="../../css/chat-response.css" th:href="@{/css/chat-response.css}" rel="stylesheet" type="text/css">
+    <meta charset="UTF-8">
+    <title>Chattapplikation</title>
+</head>
+<body>
+    <div th:utext="${messages}">
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg">
+        <circle cx=0 cy=0 r=1 style="fill:#00FF00;">
+        </circle>
+        <circle cx=5 cy=0 r=1 style="fill:#00FF00;">
+        </circle>
+        <circle cx=10 cy=0 r=1>
+            <animate attributeName="fill" values="#00FF00;black;#00FF00" dur="1s" repeatCount="indefinite" />
+        </circle>
+    </svg>
+</body>
+</html>

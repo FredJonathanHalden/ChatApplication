@@ -1,65 +1,64 @@
 package mvc.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import mvc.model.Message;
-import mvc.model.Messages;
+import org.springframework.ui.Model;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
+import repository.MessageRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @Controller
+@RequestMapping(path="/")
 public class ChatController {
 
-    private final Messages messages = new Messages();
+    @Autowired
+    private MessageRepository messageRepository;
 
-  @GetMapping(path= "/chat", produces = "application/html")
-  public String chat() {
-      return "chat.html";
-  }
+    @GetMapping(path="/chat", produces="application/html")
+    public String chat(HttpServletRequest request, Model model) {
+        Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
+        if (inputFlashMap != null) {
+            String senderName = (String) inputFlashMap.get("senderName");
+            model.addAttribute("senderName", senderName);
+        } else {
+            model.addAttribute("senderName", "Skriv ditt namn här...");
+        }
+        return "chat.html";
+    }
 
-    @RequestMapping(value = "/submit", method = RequestMethod.POST)
-    @ResponseBody
-    public String submit(@ModelAttribute("senderName") String senderName, @ModelAttribute("message") String sentMessage) {
-        messages.add(new Message(senderName, sentMessage));
+    @GetMapping(path="/chat-response", produces="application/html")
+    public String chatResponse(Model model) {
+        int y = 20;
+        String htmlCode = "";
+        for (Message foundMessage : messageRepository.findAll()) {
+            htmlCode += "<p x=30 y=" + y + ">" + foundMessage + "</p>";
+            y += 20;
+        }
+        model.addAttribute("messages", htmlCode);
 
-        int y = 30 + 30 * messages.getNumberOfMessages();
-        return "<!DOCTYPE html>" +
-                "<html lang=\"en\" xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:th=\"http://www.w3.org/1999/xhtml\">" +
-                "<head>" +
-                "<link href=\"../../css/chat.css\" th:href=\"@{/css/chat.css}\" rel=\"stylesheet\" type=\"text/css\">" +
-                "<meta charset=\"UTF-8\">" +
-                "<title>" +
-                "Chattapplikation" +
-                "</title>" +
-                "</head>" +
-                "<body>" +
-                "<h2>" +
-                "Chattapplikation" +
-                "</h2>" +
-                "<svg xmlns=\"http://www.w3.org/2000/svg\">" +
-                "<rect/>" +
-                messages.toHtmlSvgTextString() +
-                "<circle cx=\"30\" cy=\"" + y + "\" r=\"1\" style=\"fill:black;\">\n" +
-                "</circle>\n" +
-                "<circle cx=\"35\" cy=\"" + y + "\" r=\"1\" style=\"fill:black;\">\n" +
-                "</circle>\n" +
-                "<circle class=\"dot\" cx=\"40\" cy=\"" + y + "\" r=\"1\">\n" +
-                "<animate attributeName=\"fill\" values=\"black;white;black\" dur=\"2s\" repeatCount=\"indefinite\" />\n" +
-                "</circle>" +
-                "</svg>" +
-                "<form action=\"/submit\" method=\"post\">" +
-                "<label>" +
-                "Namn: " +
-                "<br/>" +
-                "<input type=\"text\" name=\"senderName\" value=" + senderName + ">" +
-                "</label>" +
-                "<br/>" +
-                "<label for=\"message\">" +
-                "Meddelande: " +
-                "<br/>" +
-                "</label>" +
-                "<textarea id=\"message\" name=\"message\"></textarea>" +
-                "<input type=\"submit\" value=\"Skicka\">" +
-                "</form>" +
-                "</body>" +
-                "</html>";
+        return "chat-response.html";
+    }
+
+    @PostMapping(path="/add-message") // Map ONLY POST Requests
+    public String addNewMessage (RedirectAttributes redirectAttributes, @ModelAttribute("senderName") String senderName, @ModelAttribute("text") String text) {
+        redirectAttributes.addFlashAttribute("senderName", senderName);
+
+        Message message = new Message();
+        message.setSenderName(senderName);
+        message.setText(text);
+        messageRepository.save(message);
+
+        return "redirect:/chat";
+    }
+
+    @GetMapping(path="/all", produces = "application/json")
+    public @ResponseBody Iterable<Message> getAllMessages() {
+        // This returns a JSON or XML with the messages
+        return messageRepository.findAll();
     }
 }
